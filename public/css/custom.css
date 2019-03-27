@@ -49,3 +49,7 @@ body {
 .from {
       padding: 0px 8px;
 }
+img{
+    height: 300px;
+    max-width: 300px;
+}

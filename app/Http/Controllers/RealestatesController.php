@@ -84,7 +84,7 @@ class RealestatesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('realestates.single')->with('realestate',Realestate::find($id));
     }
 
     /**
@@ -186,4 +186,10 @@ class RealestatesController extends Controller
        $season->delete();
        return "done";
    }
+  /////////////////////////////////////////////////////////////////
+  public function showall()
+  {
+    $realestates=Realestate::All();
+    return view('realestates.showall')->with('realestates',$realestates);
+  }
 }
