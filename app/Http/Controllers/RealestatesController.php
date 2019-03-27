@@ -78,7 +78,9 @@ class RealestatesController extends Controller
      */
     public function edit($id)
     {
-        //
+      $realestate = Realestate::find($id);
+      return view('realestates.edit')->with('realestate',$realestate)
+                                     ->with('details',Detail::All());
     }
 
     /**
@@ -90,7 +92,41 @@ class RealestatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $realestate = $request->validate(
+        [
+          'name' => 'required',
+          'details' => 'required'
+        ],
+        [
+          'name.required' => 'يجب ادخال اسم العقار',
+          'image.required' => 'يجب رفع صورة',
+          'details.required' => 'يجب اختيار تفاصيل'
+          ]);
+          $realestate = Realestate::find($id);
+          if($request->hasFile('image'))
+          {
+              $realestate = $this->validate($request,[
+                 'featured' => 'required|image',
+              ],
+              [
+                'image.required' => 'يجب رفع صورة',
+                ]);
+              $image = $request->image;
+              $image_new_name= time().$image->getClientOriginalName();
+              $image->move('uploads',$image_new_name);
+
+              $filename = public_path().'/uploads/'.$realestate->image;
+                \File::delete($filename);
+
+              $realestate->image = $image_new_name;
+          }
+
+
+          $realestate->name = $request->name;
+          $realestate->save();
+          $realestate->details()->sync($request->details);
+          Session::flash('success','تم تعديل العقار');
+          return redirect()->route('realestates');
     }
 
     /**
@@ -101,6 +137,11 @@ class RealestatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //get the state data
+        $realestate = Realestate::find($id);
+        $realestate->delete();
+        Detail::where('post_id', $id)->delete();
+        Session::flash('success','تم حذف العقار');
+        return redirect()->back();
     }
 }
