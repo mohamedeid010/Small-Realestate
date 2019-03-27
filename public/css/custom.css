@@ -1,5 +1,15 @@
+@import url(//db.onlinewebfonts.com/c/0387a0b8b59d6b26cb736ec76d5045b0?family=Cairo);
+@font-face {font-family: "Cairo";
+    src: url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.eot");
+    src: url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.svg#Cairo") format("svg");
+}
 body {
   direction: rtl;
+  font-family:Cairo !important;
 }
 .card {
     position: relative;
@@ -27,4 +37,15 @@ body {
 }
 .checktext {
     margin-right: 19px;
+}
+.price-container{
+    border: 1px solid #cfcfcf !important;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.repeater input{
+  margin: 5px;
+}
+.from {
+      padding: 0px 8px;
 }

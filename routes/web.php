@@ -26,5 +26,4 @@ Route::post('/realestate/store','RealestatesController@store')->name('realestate
 Route::get('/realestate/edit/{id}','RealestatesController@edit')->name('realestate.edit');
 Route::post('/realestate/update/{id}','RealestatesController@update')->name('realestate.update');
 Route::get('/realestate/delete/{id}','RealestatesController@destroy')->name('realestate.delete');
-Route::get('/offers','OffersController@index')->name('offers');
-Route::get('/offer/create','OffersController@create')->name('offer.create');
+Route::get('/removeseason', 'RealestatesController@removeseason')->name('removeseason');

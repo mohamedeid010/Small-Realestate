@@ -55,7 +55,23 @@ class RealestatesController extends Controller
         $realestate->name = $request->name;
         $realestate->image = $image_new_name;
         $realestate->save();
+        //dd($realestate->id);
         $realestate->details()->attach($request->details);
+
+        $price = $request->input('price');
+        $i=0;
+        foreach ($price as $row)
+        {
+           $charges[] = [
+               'price' => $row,
+               'name' =>  $request->input('seasonname')[$i], //$row['seasonname'],
+               'dateto' => $request->input('to')[$i], //$row['to'],
+               'datefrom' => $request->input('from')[$i], //$row['from'],
+               'realestate_id' => $realestate->id,
+           ];
+           $i++;
+        }
+        Season::insert($charges);
         Session::flash('success','تم اضافة العقار بنجاح');
         return redirect()->route('realestates');
     }
@@ -126,6 +142,23 @@ class RealestatesController extends Controller
           $realestate->name = $request->name;
           $realestate->save();
           $realestate->details()->sync($request->details);
+
+          Season::where('realestate_id', $id)->delete();
+          $price = $request->input('price');
+          $i=0;
+          foreach ($price as $row)
+          {
+             $charges[] = [
+                 'price' => $row,
+                 'name' =>  $request->input('seasonname')[$i], //$row['seasonname'],
+                 'dateto' => $request->input('to')[$i], //$row['to'],
+                 'datefrom' => $request->input('from')[$i], //$row['from'],
+                 'realestate_id' => $realestate->id,
+             ];
+             $i++;
+          }
+          Season::insert($charges);
+
           Session::flash('success','تم تعديل العقار');
           return redirect()->route('realestates');
     }
@@ -141,8 +174,16 @@ class RealestatesController extends Controller
         //get the state data
         $realestate = Realestate::find($id);
         $realestate->delete();
-        Detail::where('post_id', $id)->delete();
+        Detail_realestate::where('post_id', $id)->delete();
+        Season::where('realestate_id', $id)->delete();
         Session::flash('success','تم حذف العقار');
         return redirect()->back();
     }
+  /////////////////////////////////////////////////////////////
+  public function removeseason(Request $request)
+   {
+       $season=Season::find($request->id);
+       $season->delete();
+       return "done";
+   }
 }

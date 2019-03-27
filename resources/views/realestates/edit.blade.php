@@ -38,7 +38,23 @@
             @endforeach
             @endif
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <div class="form-group price-container">
+            <label for="price"><a href="#" class="addrepeat">اضافة موسم</a></label>
+            <div class="price-div">
+              @foreach($realestate->seasons as $season)
+            <div class="row repeater">
+              <div class="col-md-12"><a href="{{$season->id}}" class="remove-season remove-active btn btn-danger">حذف</a></div>
+              <div class="col-md-6"><span>السعر : </span><input type="text" name="price[]" value="{{$season->price}}"/></div>
+                <div class="col-md-6"><span >الموسم : </span><input type="text" name="seasonname[]" value="{{$season->name}}"/></div>
+                <div class="col-md-6"><span class="from">الي : </span><input type="date" name="to[]" value="{{$season->dateto}}"/></div>
+                <div class="col-md-6"><span class="from">من  : </span><input type="date" name="from[]" value="{{$season->datefrom}}"/></div>
+            </div>
+            @endforeach
+          </div>
+        </div>
+
+          <button type="submit" class="btn btn-primary">حفظ</button>
       </form>
     </div>
 </div>

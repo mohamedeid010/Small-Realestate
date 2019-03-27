@@ -22,8 +22,11 @@
             <td scope="row">{{$detail->id}}</td>
             <td>{{$detail->name}}</td>
             <td>
+
                 <a href="{{route('detail.edit',['id'=>$detail->id])}}" class="btn btn-primary">تعديل</a>
+                @if(count($detail->realestates) == 0)
                 <a href="{{route('detail.delete',['id'=>$detail->id])}}" class="btn btn-danger">حذف</a>
+                @endif
             </td>
           </tr>
           @endforeach

@@ -31,17 +31,18 @@
             @endforeach
             @endif
           </div>
-          <div class="form-group">
-            <label for="price"></label>
+          <div class="form-group price-container">
+            <label for="price"><a href="#" class="addrepeat">اضافة موسم</a></label>
             <div class="price-div">
             <div class="row repeater">
-              <div class="col-md-6"><span>السعر : </span><input type="text" name="price"/></div>
-                <div class="col-md-6"><span>الموسم : </span><input type="text" name="season_name"/></div>
-                <div class="col-md-6"><span>الي : </span><input type="date" name="to"/></div>
-                <div class="col-md-6"><span>من  : </span><input type="date" name="from"/></div>
+              <div class="col-md-6"><span>السعر : </span><input type="text" name="price[]"/></div>
+                <div class="col-md-6"><span>الموسم : </span><input type="text" name="seasonname[]"/></div>
+                <div class="col-md-6"><span class="from">الي : </span><input type="date" name="to[]"/></div>
+                <div class="col-md-6"><span class="from">من  : </span><input type="date" name="from[]"/></div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+          <button type="submit" class="btn btn-primary">حفظ</button>
       </form>
     </div>
 </div>
