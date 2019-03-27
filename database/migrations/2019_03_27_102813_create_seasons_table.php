@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePricesTable extends Migration
+class CreateSeasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreatePricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prices', function (Blueprint $table) {
+        Schema::create('seasons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date_from');
-            $table->date('date_to');
+            $table->string('name');
+            $table->date('datefrom');
+            $table->date('dateto');
             $table->integer('price');
+            $table->integer('realestate_id');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreatePricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('seasons');
     }
 }

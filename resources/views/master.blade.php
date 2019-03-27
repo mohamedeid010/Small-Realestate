@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
   <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="{{asset('css/custom.css')}}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -24,11 +24,7 @@
         <li class="list-group-item"><a href="/home">الرئيسية</a></li>
         <li class="list-group-item"><a href="{{route('details')}}">الخصائص</a></li>
         <li class="list-group-item"><a href="{{route('realestates')}}">العقارات</a></li>
-        <li class="list-group-item"><a href="">Posts</a></li>
-        <li class="list-group-item"><a href="">Create New Post</a></li>
-        <li class="list-group-item"><a href="">Tags</a></li>
-        <li class="list-group-item"><a href="">Create New Tag</a></li>
-
+        <li class="list-group-item"><a href="{{route('offers')}}">العروض</a></li>
       </ul>
   </div>
   </div>

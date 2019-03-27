@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Realestate;
 use App\Detail;
+use App\Season;
 use Session;
 
 class RealestatesController extends Controller

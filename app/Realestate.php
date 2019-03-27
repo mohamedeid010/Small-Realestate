@@ -10,4 +10,8 @@ class Realestate extends Model
     {
       return $this->belongsToMany('App\Detail');
     }
+    public function seasons()
+    {
+      return $this->hasMany('App\Season');
+    }
 }
