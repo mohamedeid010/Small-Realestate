@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Realestate;
+use App\Detail;
+use App\Season;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $realestates=Realestate::paginate(15);
+      return view('realestates.showall')->with('realestates',$realestates);
     }
 }

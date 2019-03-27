@@ -13,6 +13,7 @@
           <a href="{{route('realestate.show',['id'=>$realestate->id])}}">{{$realestate->name}}</a>
       </div>
       @endforeach
+      <div class="col-md-12">{{ $realestates->links() }}</div>
       @endif
     </div>
 

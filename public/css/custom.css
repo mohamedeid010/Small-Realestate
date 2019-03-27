@@ -1,15 +1,13 @@
-@import url(//db.onlinewebfonts.com/c/0387a0b8b59d6b26cb736ec76d5045b0?family=Cairo);
-@font-face {font-family: "Cairo";
-    src: url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.eot");
-    src: url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.eot?#iefix") format("embedded-opentype"),
-    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.woff2") format("woff2"),
-    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.woff") format("woff"),
-    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.ttf") format("truetype"),
-    url("//db.onlinewebfonts.com/t/0387a0b8b59d6b26cb736ec76d5045b0.svg#Cairo") format("svg");
-}
+@import url('https://fonts.googleapis.com/css?family=Cairo:400,600,700');
+
 body {
   direction: rtl;
   font-family:Cairo !important;
+  direction: rtl;
+  text-align: right;
+  font-family: Cairo;
+  font-weight: 600;
+  background-color: #dddddd82;
 }
 .card {
     position: relative;
@@ -49,7 +47,24 @@ body {
 .from {
       padding: 0px 8px;
 }
-img{
-    height: 300px;
-    max-width: 300px;
+.navbar{
+  margin-bottom: 0;
+}
+.navbar-brand{
+  height: auto;
+}
+.navbar-header{
+  float: right;
+}
+.navbar-fluid-container{
+  background-color: #fff;
+box-shadow: 0 2px 4px rgba(0,0,0,.04);
+}
+.main-contenrt{
+  clear: both;
+margin-top: 15px;
+}
+.logout-dropdown{
+  padding: 12px;
+    text-align: right;
 }

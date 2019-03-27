@@ -12,7 +12,7 @@ class RealestatesController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * Display all realestates for the authenticated user
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -22,7 +22,7 @@ class RealestatesController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * Display creat realestates form for authenticated user
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -32,12 +32,13 @@ class RealestatesController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * save realestatesin database
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+      //validate the form data and set custom error message
         $realestate = $request->validate([
           'name' => 'required',
           'image' => 'required|image',
@@ -48,16 +49,19 @@ class RealestatesController extends Controller
           'image.required' => 'يجب رفع صورة',
           'details.required' => 'يجب اختيار تفاصيل'
           ]  );
+        //upload realestate image
         $image = $request->image;
         $image_new_name = time().$image->getClientOriginalName();
         $image->move('uploads',$image_new_name);
+        //insert realestate to database
         $realestate = new Realestate;
         $realestate->name = $request->name;
         $realestate->image = $image_new_name;
         $realestate->save();
-        //dd($realestate->id);
+        //add the details to realestate
         $realestate->details()->attach($request->details);
 
+        //add price on season for the realestate
         $price = $request->input('price');
         $i=0;
         foreach ($price as $row)
@@ -78,7 +82,7 @@ class RealestatesController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * Show realestate for visitor
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -89,7 +93,7 @@ class RealestatesController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * show edit form for realestate.
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -102,13 +106,14 @@ class RealestatesController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * save updated realestate
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+      //validate the data
       $realestate = $request->validate(
         [
           'name' => 'required',
@@ -119,28 +124,33 @@ class RealestatesController extends Controller
           'image.required' => 'يجب رفع صورة',
           'details.required' => 'يجب اختيار تفاصيل'
           ]);
+          //get the element by id
           $realestate = Realestate::find($id);
+          //check if element has anew image for upload
           if($request->hasFile('image'))
           {
+            //validate the image
               $realestate = $this->validate($request,[
                  'featured' => 'required|image',
               ],
               [
                 'image.required' => 'يجب رفع صورة',
                 ]);
+              //upload the new image
               $image = $request->image;
               $image_new_name= time().$image->getClientOriginalName();
               $image->move('uploads',$image_new_name);
-
+              // delete old image
               $filename = public_path().'/uploads/'.$realestate->image;
                 \File::delete($filename);
 
               $realestate->image = $image_new_name;
           }
 
-
+          //save changes to database
           $realestate->name = $request->name;
           $realestate->save();
+          //update element details
           $realestate->details()->sync($request->details);
 
           Season::where('realestate_id', $id)->delete();
@@ -180,6 +190,7 @@ class RealestatesController extends Controller
         return redirect()->back();
     }
   /////////////////////////////////////////////////////////////
+  //REmove the season by ajax to add new
   public function removeseason(Request $request)
    {
        $season=Season::find($request->id);
@@ -187,9 +198,11 @@ class RealestatesController extends Controller
        return "done";
    }
   /////////////////////////////////////////////////////////////////
+  //show all realestates for visitors
   public function showall()
   {
-    $realestates=Realestate::All();
+    $this->middleware('auth');
+    $realestates=Realestate::paginate(15);
     return view('realestates.showall')->with('realestates',$realestates);
   }
 }

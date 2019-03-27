@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/','RealestatesController@showall');
+Route::get('/', 'Auth\LoginController@showLoginForm');
+//Route::get('/main','RealestatesController@showall')->name('main');
 Route::get('/realestate/show/{id}','RealestatesController@show')->name('realestate.show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin' ,'middleware'=>'auth'],function(){
+
   Route::get('/details','DetailsController@index')->name('details');
   Route::get('/details/create','DetailsController@create')->name('details.create');
   Route::post('/details/store','DetailsController@store')->name('details.store');

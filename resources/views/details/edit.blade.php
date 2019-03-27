@@ -18,7 +18,7 @@
             <label for="category-name">اسم الخاصية</label>
             <input type="text" class="form-control" id="category-name" name="name" value="{{$detail->name}}">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">حفظ</button>
       </form>
     </div>
 </div>

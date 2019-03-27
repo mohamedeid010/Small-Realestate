@@ -13,13 +13,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid navbar-fluid-container">
-  <nav class="container">
-    <div class="navbar">
+<div class="container">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{asset('images/logo.png')}}" alt="realestate"/>
-        </a>
+        <a class="navbar-brand" href="#">RealEstate</a>
       </div>
       <ul class="nav navbar-nav">
         @guest
@@ -37,11 +35,11 @@
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right logout-dropdown" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
-                        {{ __('تسجيل خؤوج') }}
+                        {{ __('Logout') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -54,18 +52,12 @@
     </div>
   </nav>
 </div>
-<div class="container main-contenrt">
+<div class="container">
   <div class="row">
-    <div class="col-md-8 col-xs-12">
+    <div class="col-xs-12">
       @yield('content')
     </div>
-    <div class="col-md-4 col-xs-12">
-      <ul class="list-group">
-        <li class="list-group-item"><a href="/home">الرئيسية</a></li>
-        <li class="list-group-item"><a href="{{route('details')}}">الخصائص</a></li>
-        <li class="list-group-item"><a href="{{route('realestates')}}">العقارات</a></li>
-      </ul>
-  </div>
+
   </div>
 </div>
 <div style="display:none">

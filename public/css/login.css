@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo:400,600,700');
+body{
+  direction: rtl;
+  text-align: right;
+  font-family: Cairo;
+  font-weight: 600;
+  background-color: #dddddd82;
+}
+.card{
+      box-shadow: 0 0 10px #ced4da;
+}
